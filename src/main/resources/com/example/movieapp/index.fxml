@@ -8,10 +8,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.text.Text?>
 
+<!-- TODO: Below is just my suggestion, feel free to make a new one -->
 <BootstrapPane
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
-        fx:controller="com.example.movieapp.MovieController"
+        fx:controller="com.example.movieapp.controllers.IndexController"
         fx:id="bootstrapLayout"
         vgap="20"
         hgap="20"
