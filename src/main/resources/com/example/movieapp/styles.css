@@ -1,50 +1,117 @@
 /* Left side bar */
 .left-sider {
     -fx-background-color: #0052D8;
-    -fx-padding: 30px;
+    -fx-padding: 30;
     -fx-font: 24px "Sans-Serif";
-    -fx-color: #FFF990;
-    -fx-width: 30%;
+    -fx-pref-width: 260;
+    -fx-text-fill: #FFF990;
+    -fx-text-alignment: left;
 }
 
 .left-sider .logo{
-    -fx-margin: 0 0 20px 0;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-text-fill: #FFF990;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 115px;
+    -fx-text-alignment: center;
 }
 
-.left-sider .user{
+.left-sider .nameUser{
+    -fx-text-fill: #FFF990;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 70px;
 }
 
-.left-sider .nav-bar .nav-btn{
-    -fx-color: #FFF990;
+.left-sider Button{
+    -fx-color: #0052D8;
     -fx-border-color: #FFF990 ;
     -fx-border-width: 2 ;
     -fx-border-style: none none solid none;
-    -fx-margin: 10px 0;
+    -fx-margin: 10 0 0 10;
+    -fx-font: 16px "Sans-Serif";
+    -fx-pref-width: 200px;
+    -fx-pref-height: 28px;
+    -fx-text-alignment: left;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-text-fill: #FFF990;
 }
 
-.left-sider .nav-bar .nav-btn.home{
+.left-sider Button:hover{
     -fx-background-color: #FFF990;
-    -fx-color: #0052D8;
+    -fx-text-fill: #0052D8;
     -fx-border-color: #FF4934 ;
     -fx-border-width: 2 ;
     -fx-border-style: none none solid none;
 }
 
-.left-sider .search-bar{
+.left-sider .home{
+    -fx-background-color: #FFF990;
+    -fx-text-fill: #0052D8;
+    -fx-border-color: #FF4934 ;
+    -fx-border-width: 2 ;
+    -fx-border-style: none none solid none;
+}
+
+.left-sider .favorites{
+    -fx-background-image: url('images/heart.png');
+    -fx-background-size: 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 95%;
+}
+
+.left-sider .searchField{
     -fx-background-color: #ffffff;
-    -fx-color: #03B6A4;
+    -fx-text-fill: #03B6A4;
     -fx-border-color: #FFF990 ;
     -fx-border-width: 2 ;
     -fx-padding: 5px;
+    -fx-margin: 10 0 0 10;
+    -fx-font: 16px "Sans-Serif";
+    -fx-pref-width: 200px;
+    -fx-pref-height: 28px;
+}
+
+.left-sider .search{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #03B6A4;
+    -fx-border-color: #FFF990 ;
+    -fx-border-width: 2 ;
+    -fx-padding: 5px;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 28px;
+    -fx-font: 16px "Sans-Serif";
+}
+
+.left-sider .search:hover{
+    -fx-background-color: #03B6A4;
+    -fx-text-fill: #ffffff;
 }
 
 /* Middle section */
 .main-content{
-    -fx-width: 70%;
-    -fx-padding: 30px;
+    -fx-pref-width: 800px;
+    -fx-padding: 30;
+}
+
+.main-content #heroPoster{
+    -fx-pref-height: 300px;
+}
+
+.main-content .scrollMovies{
+    -fx-pref-width: 800px;
 }
 
 .upcoming-movies{
-    -fx-width: 30%;
-    -fx-padding: 30px;
+    -fx-pref-width: 250px;
+    -fx-padding: 30;
+    -fx-border-color: #707070 ;
+    -fx-border-width: 2 ;
+    -fx-border-style: none none none solid;
 }
