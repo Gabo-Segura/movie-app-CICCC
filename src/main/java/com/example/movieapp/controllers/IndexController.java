@@ -4,6 +4,7 @@ import com.example.movieapp.Config;
 import com.example.movieapp.components.MainMovieCard;
 import com.example.movieapp.models.movies.DiscoverMoviesResponse;
 import com.example.movieapp.models.movies.MovieResponse;
+import com.example.movieapp.models.movies.UpcomingMoviesResponse;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -27,6 +28,8 @@ public class IndexController implements Initializable {
     private GridPane moviesContainer;
 
     private DiscoverMoviesResponse moviesResponse;
+    private DiscoverMoviesResponse popularMoviesResponse;
+    private UpcomingMoviesResponse upcomingMoviesResponse;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,8 +41,19 @@ public class IndexController implements Initializable {
         displayMovies();
 
         // TODO: display popular movies
-        fetchMovies("popular");
+        displayPopularMovies();
         // TODO: display upcoming movies
+        displayUpcomingMovies();
+    }
+
+    // TODO: display popular movies
+    private void displayPopularMovies() {
+        fetchMovies("popular");
+    }
+
+    // TODO: display upcoming movies
+    private void displayUpcomingMovies() {
+        fetchMovies("upcoming");
     }
 
     private void setHeroBackdrop() {
@@ -69,7 +83,7 @@ public class IndexController implements Initializable {
         }
     }
 
-    private void setMoviesResponse(JSONObject jsonObject) {
+    private void setMoviesResponse(String type, JSONObject jsonObject) {
         int page = jsonObject.getInt("page");
 
         JSONArray results = jsonObject.getJSONArray("results");
@@ -78,8 +92,23 @@ public class IndexController implements Initializable {
         int totalPages = jsonObject.getInt("total_pages");
         int totalResults = jsonObject.getInt("total_results");
 
-        this.moviesResponse = new DiscoverMoviesResponse(page, movies, totalPages, totalResults);
-        System.out.println(this.moviesResponse);
+        DiscoverMoviesResponse moviesResponse = new DiscoverMoviesResponse(page, movies, totalPages, totalResults);
+
+        if (type.equals("default")) {
+            this.moviesResponse = moviesResponse;
+            System.out.println("/discover/movie: " + this.moviesResponse);
+        } else if (type.equals("popular")) {
+            this.popularMoviesResponse = moviesResponse;
+            System.out.println("/movie/popular: " + this.popularMoviesResponse );
+        } else if (type.equals("upcoming")) {
+            UpcomingMoviesResponse upcomingMoviesResponse = new UpcomingMoviesResponse(page, movies, totalPages, totalResults);
+
+            JSONObject dates = jsonObject.getJSONObject("dates");
+            upcomingMoviesResponse.setDates(dates);
+
+            this.upcomingMoviesResponse = upcomingMoviesResponse;
+            System.out.println("/movie/upcoming: " + this.upcomingMoviesResponse );
+        }
     }
 
     // https://developers.themoviedb.org/3/discover/movie-discover
@@ -95,8 +124,10 @@ public class IndexController implements Initializable {
 
         String url = Config.BASE_URL + directive;
 
-        if (directive.equals("/movie/popular")) {
-            return Unirest.get(url).asJson();
+        if (directive.equals("/movie/popular") || directive.equals("/movie/upcoming")) {
+            return Unirest.get(url)
+                .queryString("api_key", Config.API_KEY)
+                .asJson();
         }
         return Unirest.get(url)
             .queryString("api_key", Config.API_KEY)
@@ -112,16 +143,17 @@ public class IndexController implements Initializable {
 
     public void fetchMovies(String type) {
         try {
-            HttpResponse<JsonNode> jsonRes = getJsonRes("/discover/movie");
+            HttpResponse<JsonNode> jsonRes;
+            if (type.equals("popular")) {
+                jsonRes = getJsonRes("/movie/popular");
+            } else if (type.equals("upcoming")) {
+                jsonRes = getJsonRes("/movie/upcoming");
+            } else {
+                jsonRes = getJsonRes("/discover/movie");
+            }
 
-//            if (type.equals("popular")) {
-//                jsonRes = getJsonRes("/movie/popular");
-//            } else if (type.equals("upcoming")) {
-////                jsonRes = getJsonRes();
-//            }
             JSONObject jsonObject = jsonRes.getBody().getObject();
-
-            setMoviesResponse(jsonObject);
+            setMoviesResponse(type, jsonObject);
         } catch (UnirestException e) {
             e.printStackTrace();
         }
