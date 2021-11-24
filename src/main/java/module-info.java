@@ -13,7 +13,9 @@ module com.example.movieapp {
     opens com.example.movieapp to javafx.fxml;
 
     exports com.example.movieapp;
-    exports com.example.movieapp.components;
     exports com.example.movieapp.controllers;
+    exports com.example.movieapp.models.movies;
     opens com.example.movieapp.controllers to javafx.fxml;
+    exports com.example.movieapp.components;
+    opens com.example.movieapp.components to javafx.fxml;
 }

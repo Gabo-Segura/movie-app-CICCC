@@ -12,10 +12,8 @@ public class MovieApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("index.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        //scene.getStylesheets().add("styles.css");
-
         stage.setScene(scene);
         stage.show();
     }

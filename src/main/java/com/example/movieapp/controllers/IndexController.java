@@ -1,7 +1,7 @@
 package com.example.movieapp.controllers;
 
 import com.example.movieapp.Config;
-import com.example.movieapp.components.BootstrapPane;
+import com.example.movieapp.components.MainMovieCard;
 import com.example.movieapp.models.movies.DiscoverMoviesResponse;
 import com.example.movieapp.models.movies.MovieResponse;
 import com.mashape.unirest.http.HttpResponse;
@@ -9,20 +9,62 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class IndexController {
+public class IndexController implements Initializable {
     @FXML
-    private BootstrapPane bootstrapLayout;
+    public ImageView heroPoster;
+    @FXML
+    private GridPane moviesContainer;
 
-    // TODO: display the data to user
     private DiscoverMoviesResponse moviesResponse;
 
-    public IndexController() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // fetch data from api
         fetchMovies();
+        // display poster on Hero section
+        setHeroPoster();
+        // display main movies
+        displayMovies();
+        // TODO: display popular movies
+        // TODO: display upcoming movies
+    }
+
+    private void setHeroPoster() {
+        String imgUrl = Config.IMG_BASE_URL + "w500" + this.moviesResponse.getMovies().get(0).getPosterPath();
+        Image img = new Image(imgUrl);
+
+        this.heroPoster.setImage(img);
+    }
+
+    // display the fetched movie data on screen
+    private void displayMovies() {
+        int k = 0;
+
+        for (int row = 0; row < 5; row++) {
+            for (int col = 0; col < 4; col++) {
+                MovieResponse movie = moviesResponse.getMovies().get(k);
+
+                String posterPath = movie.getPosterPath();
+                String title = movie.getTitle();
+                Double rating = movie.getVoteAverage();
+                int id = movie.getId();
+
+                MainMovieCard mainMovieCard = new MainMovieCard(posterPath, title, rating, id);
+                this.moviesContainer.add(mainMovieCard, col, row);
+                k++;
+            }
+        }
     }
 
     private void setMoviesResponse(JSONObject jsonObject) {
