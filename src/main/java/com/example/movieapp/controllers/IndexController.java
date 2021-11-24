@@ -33,15 +33,15 @@ public class IndexController implements Initializable {
         // fetch data from api
         fetchMovies();
         // display poster on Hero section
-        setHeroPoster();
+        setHeroBackdrop();
         // display main movies
         displayMovies();
         // TODO: display popular movies
         // TODO: display upcoming movies
     }
 
-    private void setHeroPoster() {
-        String imgUrl = Config.IMG_BASE_URL + "w500" + this.moviesResponse.getMovies().get(0).getPosterPath();
+    private void setHeroBackdrop() {
+        String imgUrl = Config.IMG_BASE_URL + "/w500" + this.moviesResponse.getMovies().get(0).getBackdropPath();
         Image img = new Image(imgUrl);
 
         this.heroPoster.setImage(img);
@@ -83,7 +83,7 @@ public class IndexController implements Initializable {
     // https://developers.themoviedb.org/3/discover/movie-discover
     // TODO: change the query string to fetch different movies data
     public HttpResponse<JsonNode> getJsonRes() throws UnirestException {
-        String directive = "discover/movie";
+        String directive = "/discover/movie";
         String language = "en-US";
         String region = "US";
         String sortBy = "popularity.desc";
