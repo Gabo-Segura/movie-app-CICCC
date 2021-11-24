@@ -1,0 +1,50 @@
+/* Left side bar */
+.left-sider {
+    -fx-background-color: #0052D8;
+    -fx-padding: 30px;
+    -fx-font: 24px "Sans-Serif";
+    -fx-color: #FFF990;
+    -fx-width: 30%;
+}
+
+.left-sider .logo{
+    -fx-margin: 0 0 20px 0;
+}
+
+.left-sider .user{
+}
+
+.left-sider .nav-bar .nav-btn{
+    -fx-color: #FFF990;
+    -fx-border-color: #FFF990 ;
+    -fx-border-width: 2 ;
+    -fx-border-style: none none solid none;
+    -fx-margin: 10px 0;
+}
+
+.left-sider .nav-bar .nav-btn.home{
+    -fx-background-color: #FFF990;
+    -fx-color: #0052D8;
+    -fx-border-color: #FF4934 ;
+    -fx-border-width: 2 ;
+    -fx-border-style: none none solid none;
+}
+
+.left-sider .search-bar{
+    -fx-background-color: #ffffff;
+    -fx-color: #03B6A4;
+    -fx-border-color: #FFF990 ;
+    -fx-border-width: 2 ;
+    -fx-padding: 5px;
+}
+
+/* Middle section */
+.main-content{
+    -fx-width: 70%;
+    -fx-padding: 30px;
+}
+
+.upcoming-movies{
+    -fx-width: 30%;
+    -fx-padding: 30px;
+}

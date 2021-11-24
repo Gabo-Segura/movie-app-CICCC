@@ -27,7 +27,15 @@
         </HBox>
 
         <VBox styleClass="nav-bar" GridPane.rowIndex="3" GridPane.columnIndex="1" alignment="CENTER_LEFT">
-            <Button styleClass="nav-btn">Home</Button>
+            <Button styleClass="nav-btn home">Home</Button>
+            <Button styleClass="nav-btn">Your Favorites</Button>
+            <Button styleClass="nav-btn">Title</Button>
+            <Button styleClass="nav-btn">Genres</Button>
+            <Button styleClass="nav-btn">Date</Button>
+            <Button styleClass="nav-btn">Countries</Button>
+            <Button styleClass="nav-btn">Cast</Button>
+            <Button styleClass="nav-btn">Ratings</Button>
+            <Button styleClass="nav-btn">Collections</Button>
         </VBox>
 
         <HBox styleClass="search-bar" GridPane.rowIndex="3" GridPane.columnIndex="1">
