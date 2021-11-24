@@ -2,7 +2,7 @@
 .left-sider {
     -fx-background-color: #0052D8;
     -fx-padding: 30;
-    -fx-font: 24px "Sans-Serif";
+    -fx-font: 20px "Sans-Serif";
     -fx-pref-width: 260;
     -fx-text-fill: #FFF990;
     -fx-text-alignment: left;
@@ -14,7 +14,7 @@
     -fx-background-insets: 5px;
     -fx-text-fill: #FFF990;
     -fx-pref-width: 200px;
-    -fx-pref-height: 115px;
+    -fx-pref-height: 130px;
     -fx-text-alignment: center;
 }
 
@@ -24,7 +24,7 @@
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
     -fx-pref-width: 200px;
-    -fx-pref-height: 70px;
+    -fx-pref-height: 100px;
 }
 
 .left-sider Button{
@@ -71,11 +71,17 @@
     -fx-text-fill: #03B6A4;
     -fx-border-color: #FFF990 ;
     -fx-border-width: 2 ;
-    -fx-padding: 5px;
     -fx-margin: 10 0 0 10;
     -fx-font: 16px "Sans-Serif";
     -fx-pref-width: 200px;
     -fx-pref-height: 28px;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-image: url('images/search.png');
+    -fx-background-size: 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 95%;
 }
 
 .left-sider .search{
@@ -87,6 +93,9 @@
     -fx-pref-width: 100px;
     -fx-pref-height: 28px;
     -fx-font: 16px "Sans-Serif";
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 .left-sider .search:hover{
@@ -108,6 +117,25 @@
     -fx-pref-width: 800px;
 }
 
+.main-content .menuPages{
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.main-content #starIcon{
+    -fx-pref-width: 200px;
+    -fx-pref-height: 28px;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-image: url('images/search.png');
+    -fx-background-size: 15px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 95%;
+}
+
+/* Upcoming movies section */
 .upcoming-movies{
     -fx-pref-width: 250px;
     -fx-padding: 30;

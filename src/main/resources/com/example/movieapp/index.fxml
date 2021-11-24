@@ -13,21 +13,27 @@
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="left-sider">
                     <children>
                         <VBox>
-                            <HBox styleClass="logo">
+                            <HBox alignment="CENTER" styleClass="logo">
                                 <ImageView fitHeight="109.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@images/app-logo.png" />
                                     </image>
                                 </ImageView>
                             </HBox>
-                            <HBox prefHeight="300.0" prefWidth="321.0" styleClass="nameUser">
+                            <HBox alignment="CENTER">
                                 <children>
                                     <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@images/fake-photo.png" />
                                        </image>
+                              <HBox.margin>
+                                 <Insets right="10.0" />
+                              </HBox.margin>
                                     </ImageView>
-                                    <Text text="Johna Doe">Johna Doe</Text>
+                                    <Text fill="#fff990" styleClass="nameUser" text="Johna Doe">
+                              <font>
+                                 <Font name="System Bold" size="22.0" />
+                              </font></Text>
                                 </children>
                             </HBox>
                         </VBox>
@@ -64,7 +70,7 @@
                             <VBox alignment="CENTER">
                                 <GridPane fx:id="moviesContainer" alignment="CENTER" hgap="20" vgap="20">
                                 </GridPane>
-                                <Pagination pageCount="10" prefHeight="56.0" prefWidth="464.0" />
+                                <Pagination pageCount="10" prefHeight="56.0" prefWidth="464.0" styleClass="menuPages" />
                             </VBox>
                         </ScrollPane>
                     </children>
