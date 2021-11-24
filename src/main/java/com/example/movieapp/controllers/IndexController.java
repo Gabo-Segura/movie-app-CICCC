@@ -94,20 +94,23 @@ public class IndexController implements Initializable {
 
         DiscoverMoviesResponse moviesResponse = new DiscoverMoviesResponse(page, movies, totalPages, totalResults);
 
-        if (type.equals("default")) {
-            this.moviesResponse = moviesResponse;
-            System.out.println("/discover/movie: " + this.moviesResponse);
-        } else if (type.equals("popular")) {
-            this.popularMoviesResponse = moviesResponse;
-            System.out.println("/movie/popular: " + this.popularMoviesResponse );
-        } else if (type.equals("upcoming")) {
-            UpcomingMoviesResponse upcomingMoviesResponse = new UpcomingMoviesResponse(page, movies, totalPages, totalResults);
+        switch (type) {
+            case "default" -> {
+                this.moviesResponse = moviesResponse;
+                System.out.println("/discover/movie: " + this.moviesResponse);
+            }
+            case "popular" -> {
+                this.popularMoviesResponse = moviesResponse;
+                System.out.println("/movie/popular: " + this.popularMoviesResponse);
+            }
+            case "upcoming" -> {
+                UpcomingMoviesResponse upcomingMoviesResponse = new UpcomingMoviesResponse(page, movies, totalPages, totalResults);
+                JSONObject dates = jsonObject.getJSONObject("dates");
+                upcomingMoviesResponse.setDates(dates);
 
-            JSONObject dates = jsonObject.getJSONObject("dates");
-            upcomingMoviesResponse.setDates(dates);
-
-            this.upcomingMoviesResponse = upcomingMoviesResponse;
-            System.out.println("/movie/upcoming: " + this.upcomingMoviesResponse );
+                this.upcomingMoviesResponse = upcomingMoviesResponse;
+                System.out.println("/movie/upcoming: " + this.upcomingMoviesResponse);
+            }
         }
     }
 
