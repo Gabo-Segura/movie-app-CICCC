@@ -1,118 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import com.example.movieapp.components.BootstrapPane?>
-
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<!-- TODO: Below is just my suggestion, feel free to make a new one -->
-<BootstrapPane
-        xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="com.example.movieapp.controllers.IndexController"
-        fx:id="bootstrapLayout"
-        vgap="20"
-        hgap="20"
->
-    <!-- Left Sider -->
-    <GridPane styleClass="left-sider" GridPane.rowIndex="1" GridPane.columnIndex="1">
-        <Text styleClass="logo" GridPane.rowIndex="1" GridPane.columnIndex="1">{{ logo }}</Text>
-
-        <HBox styleClass="user" GridPane.rowIndex="2" GridPane.columnIndex="1">
-<!--            <ImageView styleClass="user-img">{{ userImg }}</ImageView>-->
-            <Text styleClass="username">{{ userName }}</Text>
-        </HBox>
-
-        <VBox styleClass="nav-bar" GridPane.rowIndex="3" GridPane.columnIndex="1" alignment="CENTER_LEFT">
-            <Button styleClass="nav-btn">Home</Button>
-        </VBox>
-
-        <HBox styleClass="search-bar" GridPane.rowIndex="3" GridPane.columnIndex="1">
-            <TextField promptText="SEARCH"></TextField>
-            <Button>{{ searchBtnIcon }}</Button>
-        </HBox>
-    </GridPane>
-    <!-- Main Content -->
-    <GridPane styleClass="main-content" GridPane.rowIndex="1" GridPane.columnIndex="2">
-        <GridPane styleClass="hero" GridPane.rowIndex="1" GridPane.columnIndex="1">
-            <!-- Hero Image + Title + See details Btn + Trailer Btn -->
-        </GridPane>
-
-        <GridPane styleClass="movies" GridPane.rowIndex="2" GridPane.columnIndex="1">
-            <!-- For 1 movie, total = MOVIES_PER_PAGE -->
-            <VBox styleClass="movie" GridPane.rowIndex="1" GridPane.columnIndex="1" alignment="CENTER">
-<!--                <ImageView styleClass="movie-poster">{{ movieImg }}</ImageView>-->
-                <Text styleClass="movie-title">{{ movieTitle }}</Text>
-                <HBox styleClass="movie-rating">
-<!--                    <ImageView styleClass="rating-icon">{{ ratingIcon }}</ImageView>-->
-                    <Text styleClass="rating">{{ movieRating }}</Text>
-                </HBox>
-                <HBox styleClass="see-details">
-                    <Text styleClass="see-details-txt">SEE DETAILS</Text>
-<!--                    <ImageView styleClass="see-details-icon">{{ seeDetailsIcon }}</ImageView>-->
-                </HBox>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.IndexController">
+   <children>
+      <HBox prefHeight="800.0" prefWidth="1200.0">
+         <children>
+            <VBox alignment="TOP_RIGHT" prefHeight="800.0" prefWidth="300.0">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="121.0" prefWidth="300.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Movie App">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Circle fill="#1fd3ff" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="John Doe">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Home" />
+                        <Button mnemonicParsing="false" text="Your Favourites" />
+                        <Button mnemonicParsing="false" text="Title" />
+                        <Button mnemonicParsing="false" text="Genres" />
+                        <Button mnemonicParsing="false" text="Date" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField />
+                        <Button mnemonicParsing="false" text="SearchIcon" />
+                     </children>
+                  </HBox>
+               </children>
             </VBox>
-        </GridPane>
-    </GridPane>
-    <!-- Right Sider -->
-    <GridPane styleClass="right-sider" GridPane.rowIndex="1" GridPane.columnIndex="3">
-        <!-- Popular Movies -->
-        <VBox styleClass="popular-movies" GridPane.rowIndex="1" GridPane.columnIndex="1">
-            <GridPane styleClass="popular-movie">
-<!--                <ImageView-->
-<!--                        styleClass="popular-movie-img"-->
-<!--                        GridPane.rowIndex="1"-->
-<!--                        GridPane.columnIndex="1"-->
-<!--                >-->
-<!--                    {{ popularMovieImg }}-->
-<!--                </ImageView>-->
-                <VBox
-                        styleClass="popular-movie-description"
-                        GridPane.rowIndex="1"
-                        GridPane.columnIndex="2"
-                >
-                    <Text styleClass="movie-title">{{ popularMovieTitle }}</Text>
-                    <HBox styleClass="movie-rating">
-<!--                        <ImageView styleClass="rating-icon">{{ ratingIcon }}</ImageView>-->
-                        <Text styleClass="rating">{{ popularMovieRating }}</Text>
-                    </HBox>
-                    <HBox styleClass="see-details">
-                        <Text styleClass="see-details-txt">SEE DETAILS</Text>
-<!--                        <ImageView styleClass="see-details-icon">{{ seeDetailsIcon }}</ImageView>-->
-                    </HBox>
-                </VBox>
-            </GridPane>
-        </VBox>
-
-        <!-- Upcoming Movies -->
-        <VBox styleClass="upcoming-movies" GridPane.rowIndex="2" GridPane.columnIndex="1">
-            <GridPane styleClass="upcoming-movie">
-<!--                <ImageView-->
-<!--                        styleClass="upcoming-movie-img"-->
-<!--                        GridPane.rowIndex="1"-->
-<!--                        GridPane.columnIndex="1"-->
-<!--                >-->
-<!--                    {{ upcomingMovieImg }}-->
-<!--                </ImageView>-->
-                <VBox
-                        styleClass="upcoming-movie-description"
-                        GridPane.rowIndex="1"
-                        GridPane.columnIndex="2"
-                >
-                    <Text styleClass="movie-title">{{ upcomingMovieTitle }}</Text>
-                    <HBox styleClass="movie-rating">
-<!--                        <ImageView styleClass="rating-icon">{{ ratingIcon }}</ImageView>-->
-                        <Text styleClass="rating">{{ upcomingMovieRating }}</Text>
-                    </HBox>
-                    <HBox styleClass="see-details">
-                        <Text styleClass="see-details-txt">SEE DETAILS</Text>
-<!--                        <ImageView styleClass="see-details-icon">{{ seeDetailsIcon }}</ImageView>-->
-                    </HBox>
-                </VBox>
-            </GridPane>
-        </VBox>
-    </GridPane>
-</BootstrapPane>
+            <VBox prefHeight="800.0" prefWidth="600.0">
+               <children>
+                  <!-- TODO: add button to navigate that movie -->
+                  <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport></ImageView>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="480.0" minViewportWidth="460.0" pannable="true" prefHeight="400.0" prefViewportHeight="2000.0" prefWidth="460.0" vbarPolicy="ALWAYS">
+                     <VBox alignment="CENTER">
+                        <GridPane fx:id="moviesContainer" alignment="CENTER" hgap="20" vgap="20">
+                        </GridPane>
+                        <Pagination pageCount="10" prefHeight="56.0" prefWidth="464.0" />
+                     </VBox>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox prefHeight="800.0" prefWidth="300.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
