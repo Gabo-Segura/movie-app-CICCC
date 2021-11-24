@@ -31,17 +31,19 @@ public class IndexController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // fetch data from api
-        fetchMovies();
+        fetchMovies("default");
         // display poster on Hero section
-        setHeroPoster();
+        setHeroBackdrop();
         // display main movies
         displayMovies();
+
         // TODO: display popular movies
+        fetchMovies("popular");
         // TODO: display upcoming movies
     }
 
-    private void setHeroPoster() {
-        String imgUrl = Config.IMG_BASE_URL + "w500" + this.moviesResponse.getMovies().get(0).getPosterPath();
+    private void setHeroBackdrop() {
+        String imgUrl = Config.IMG_BASE_URL + "/w500" + this.moviesResponse.getMovies().get(0).getBackdropPath();
         Image img = new Image(imgUrl);
 
         this.heroPoster.setImage(img);
@@ -51,8 +53,8 @@ public class IndexController implements Initializable {
     private void displayMovies() {
         int k = 0;
 
-        for (int row = 0; row < 5; row++) {
-            for (int col = 0; col < 4; col++) {
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 3; col++) {
                 MovieResponse movie = moviesResponse.getMovies().get(k);
 
                 String posterPath = movie.getPosterPath();
@@ -82,8 +84,7 @@ public class IndexController implements Initializable {
 
     // https://developers.themoviedb.org/3/discover/movie-discover
     // TODO: change the query string to fetch different movies data
-    public HttpResponse<JsonNode> getJsonRes() throws UnirestException {
-        String directive = "discover/movie";
+    public HttpResponse<JsonNode> getJsonRes(String directive) throws UnirestException {
         String language = "en-US";
         String region = "US";
         String sortBy = "popularity.desc";
@@ -93,6 +94,10 @@ public class IndexController implements Initializable {
         String page = "1";
 
         String url = Config.BASE_URL + directive;
+
+        if (directive.equals("/movie/popular")) {
+            return Unirest.get(url).asJson();
+        }
         return Unirest.get(url)
             .queryString("api_key", Config.API_KEY)
             .queryString("language", language)
@@ -105,9 +110,15 @@ public class IndexController implements Initializable {
             .asJson();
     }
 
-    public void fetchMovies() {
+    public void fetchMovies(String type) {
         try {
-            HttpResponse<JsonNode> jsonRes = getJsonRes();
+            HttpResponse<JsonNode> jsonRes = getJsonRes("/discover/movie");
+
+//            if (type.equals("popular")) {
+//                jsonRes = getJsonRes("/movie/popular");
+//            } else if (type.equals("upcoming")) {
+////                jsonRes = getJsonRes();
+//            }
             JSONObject jsonObject = jsonRes.getBody().getObject();
 
             setMoviesResponse(jsonObject);

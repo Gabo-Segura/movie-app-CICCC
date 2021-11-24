@@ -45,7 +45,7 @@ public class MainMovieCard extends VBox {
     }
 
     public void setMoviePoster(String posterPath) {
-        String url = Config.IMG_BASE_URL + "w500" + posterPath;
+        String url = Config.IMG_BASE_URL + "/w500" + posterPath;
         Image image = new Image(url);
         this.moviePoster.setImage(image);
         this.moviePoster.setPreserveRatio(true);
