@@ -32,6 +32,7 @@ public class IndexController implements Initializable {
     private VBox mainMoviesContainer;
     @FXML
     private Pagination pagination;
+    @FXML
     private GridPane moviesContainer;
     @FXML
     private VBox popularContainer;
@@ -75,7 +76,6 @@ public class IndexController implements Initializable {
     // TODO: display popular movies
     private void displayPopularMovies() {
         fetchMovies("popular", 1);
-        fetchMovies("popular");
         for (int i = 0; i < 4; i++){
             MovieResponse movie = popularMoviesResponse.getMovies().get(i);
 
@@ -92,7 +92,6 @@ public class IndexController implements Initializable {
     // TODO: display upcoming movies
     private void displayUpcomingMovies() {
         fetchMovies("upcoming", 1);
-        fetchMovies("upcoming");
         for (int i = 0; i < 4; i++){
             MovieResponse movie = upcomingMoviesResponse.getMovies().get(i);
             System.out.println();
