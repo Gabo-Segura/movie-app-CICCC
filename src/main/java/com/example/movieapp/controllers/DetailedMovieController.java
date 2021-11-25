@@ -14,15 +14,27 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DetailedMovieController implements Initializable {
+    private int movieId;
     @FXML
     private MovieResponse movie;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.movieId = 0;
         this.movie = new MovieResponse();
     }
 
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setMovie(MovieResponse movie) {
+        this.movie = movie;
+    }
+
     public void fetchMovie(int movieId) {
+        setMovieId(movieId);
+
         try {
             System.out.println("fetch movie.... " + movieId);
 
@@ -33,7 +45,7 @@ public class DetailedMovieController implements Initializable {
             JSONObject jsonObj = jsonRes.getBody().getObject();
 //            System.out.println(jsonObj);
 
-            this.movie = MovieResponse.parse(jsonObj);
+            setMovie(MovieResponse.parse(jsonObj));
             System.out.println(this.movie);
 
             // TODO: please write the method for displaying the movie detail herer

@@ -59,18 +59,18 @@ public class IndexController implements Initializable {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() {
-                for (int iterations = 0; iterations < 1000; iterations++) {
+                for (int iterations = 0; iterations < 5; iterations++) {
                     if (isCancelled()) {
                         updateMessage("Cancelled");
                         break;
                     }
                     updateMessage("Iteration " + iterations);
-                    updateProgress(iterations, 1000);
+                    updateProgress(iterations, 1);
 
                     //Block the thread for a short time, but be sure
                     //to check the InterruptedException for cancellation
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                         setHeroBackdrop();
                     } catch (InterruptedException interrupted) {
                         if (isCancelled()) {

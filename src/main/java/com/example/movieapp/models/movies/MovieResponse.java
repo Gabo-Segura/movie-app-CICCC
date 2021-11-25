@@ -16,31 +16,21 @@ public class MovieResponse {
     private String overview;
     private LocalDate releaseDate;
     private List<Integer> genreIds;
-    private String originalTitle;
-    private String originalLanguage;
     private String title;
     private String backdropPath;
-    private double popularity;
-    private int voteCount;
-    private boolean hasVideo;
     private double voteAverage;
 
     public MovieResponse(){}
 
-    public MovieResponse(int id, String posterPath, boolean isAdult, String overview, LocalDate releaseDate, List<Integer> genreIds, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean hasVideo, double voteAverage) {
+    public MovieResponse(int id, String posterPath, boolean isAdult, String overview, LocalDate releaseDate, List<Integer> genreIds, String title, String backdropPath, double voteAverage) {
         this.id = id;
         this.posterPath = posterPath;
         this.isAdult = isAdult;
         this.overview = overview;
         this.releaseDate = releaseDate;
         this.genreIds = genreIds;
-        this.originalTitle = originalTitle;
-        this.originalLanguage = originalLanguage;
         this.title = title;
         this.backdropPath = backdropPath;
-        this.popularity = popularity;
-        this.voteCount = voteCount;
-        this.hasVideo = hasVideo;
         this.voteAverage = voteAverage;
     }
 
@@ -60,10 +50,6 @@ public class MovieResponse {
         return releaseDate;
     }
 
-    public double getPopularity() {
-        return popularity;
-    }
-
     public List<Integer> getGenreIds() {
         return genreIds;
     }
@@ -80,24 +66,8 @@ public class MovieResponse {
         return backdropPath;
     }
 
-    public int getVoteCount() {
-        return voteCount;
-    }
-
-    public boolean isVideo() {
-        return hasVideo;
-    }
-
     public double getVoteAverage() {
         return voteAverage;
-    }
-
-    public String getOriginalTitle() {
-        return originalTitle;
-    }
-
-    public String getOriginalLanguage() {
-        return originalLanguage;
     }
 
     public static MovieResponse parse(JSONObject json) throws JSONException {
@@ -142,20 +112,6 @@ public class MovieResponse {
             System.out.println("missing genre ids");
         }
 
-        String originalTitle = "";
-        try {
-            originalTitle = json.getString("original_title");
-        } catch (JSONException e) {
-            System.out.println("missing original title");
-        }
-
-        String originalLanguage = "";
-        try {
-            originalLanguage = json.getString("original_language");
-        } catch (JSONException e) {
-            System.out.println("missing original language");
-        }
-
         String title = "";
         try {
             title = json.getString("title");
@@ -168,27 +124,6 @@ public class MovieResponse {
             backdropPath = json.getString("backdrop_path");
         } catch (JSONException e) {
             System.out.println("missing backdrop path");
-        }
-
-        double popularity = 0.0;
-        try {
-            popularity = json.getDouble("popularity");
-        } catch (JSONException e) {
-            System.out.println("missing popularity");
-        }
-
-        int voteCount = 0;
-        try {
-            voteCount = json.getInt("vote_count");
-        } catch (JSONException e) {
-            System.out.println("missing vote count");
-        }
-
-        boolean hasVideo = false;
-        try {
-            hasVideo = json.getBoolean("video");
-        } catch (JSONException e) {
-            System.out.println("missing hasVideo");
         }
 
         double voteAverage = 0.0;
@@ -205,13 +140,8 @@ public class MovieResponse {
             overview,
             releaseDate,
             genreIds,
-            originalTitle,
-            originalLanguage,
             title,
             backdropPath,
-            popularity,
-            voteCount,
-            hasVideo,
             voteAverage
         );
     }
@@ -236,13 +166,8 @@ public class MovieResponse {
             ", overview='" + overview + '\'' +
             ", releaseDate=" + releaseDate +
             ", genreIds=" + genreIds +
-            ", originalTitle='" + originalTitle + '\'' +
-            ", originalLanguage='" + originalLanguage + '\'' +
             ", title='" + title + '\'' +
             ", backdropPath='" + backdropPath + '\'' +
-            ", popularity=" + popularity +
-            ", voteCount=" + voteCount +
-            ", hasVideo=" + hasVideo +
             ", voteAverage=" + voteAverage +
             '}';
     }
