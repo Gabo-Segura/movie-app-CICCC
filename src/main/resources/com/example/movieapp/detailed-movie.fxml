@@ -76,7 +76,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="423.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="movImage" fitHeight="423.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="20.0" right="30.0" />
                                  </VBox.margin></ImageView>
@@ -86,9 +86,9 @@
                               <Insets bottom="20.0" />
                            </padding>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="400.0">
+                        <VBox fx:id="movDetails" prefHeight="200.0" prefWidth="400.0">
                            <children>
-                              <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                              <Text fx:id="movTitle" fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font></Text>
@@ -97,26 +97,30 @@
                                  <VBox.margin>
                                     <Insets bottom="20.0" top="20.0" />
                                  </VBox.margin></Line>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Popularity">
+                              <Text fx:id="movPopularity" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Popularity">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin></Text>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Release Year">
+                              <Text fx:id="movRelease" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Release Year">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin></Text>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Country">
+                              <Text fx:id="movCountry" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Country">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin></Text>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Language">
+                              <Text fx:id="movLanguage" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Language">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin></Text>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview...........................">
+<!--                               <Text fx:id="movOverview" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview...........................">-->
+<!--                                   <VBox.margin>-->
+<!--                                       <Insets bottom="5.0" />-->
+<!--                                   </VBox.margin></Text>-->
+                              <Label fx:id="movOverview" text="Overview...........................">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
-                                 </VBox.margin></Text>
+                                 </VBox.margin></Label>
                            </children>
                            <opaqueInsets>
                               <Insets top="20.0" />
@@ -154,17 +158,16 @@
                 <!-- Right side content -->
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="upcoming-movies">
                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
-                            <VBox fx:id="popularContainer">
-                                <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
-                                        <font>
-                                            <Font name="System Bold" size="18.0" />
-                                        </font>
-                                        <VBox.margin>
-                                            <Insets bottom="30.0" />
-                                        </VBox.margin></Text>
-                                </children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin></Text>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="250" pannable="true" prefHeight="0.0">
+                            <VBox fx:id="popularWrapper">
+
                             </VBox>
                         </ScrollPane>
                         <VBox>
@@ -172,16 +175,16 @@
                                 <Insets bottom="30.0" />
                             </VBox.margin>
                         </VBox>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
-                            <VBox fx:id="upcomingContainer">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin></Text>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="250" pannable="true" prefHeight="0.0">
+                            <VBox fx:id="upcomingWrapper">
                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
-                                        <font>
-                                            <Font name="System Bold" size="18.0" />
-                                        </font>
-                                        <VBox.margin>
-                                            <Insets bottom="30.0" />
-                                        </VBox.margin></Text>
                                 </children>
                             </VBox>
                         </ScrollPane>

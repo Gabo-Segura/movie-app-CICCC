@@ -15,15 +15,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.Label;
+
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.json.JSONArray;
@@ -48,9 +54,9 @@ public class IndexController implements Initializable {
     @FXML
     private GridPane moviesContainer;
     @FXML
-    private VBox popularContainer;
+    private VBox popularWrapper;
     @FXML
-    private VBox upcomingContainer;
+    private VBox upcomingWrapper;
 
     private DiscoverMoviesResponse moviesResponse;
     private DiscoverMoviesResponse popularMoviesResponse;
@@ -64,9 +70,7 @@ public class IndexController implements Initializable {
         // initialize pagination
         this.pagination.setPageFactory(this::changePage);
 
-        // TODO: display popular movies
         displayPopularMovies();
-        // TODO: display upcoming movies
         displayUpcomingMovies();
 
         // concurrency
@@ -97,8 +101,7 @@ public class IndexController implements Initializable {
         thread.start();
     }
 
-    // TODO: display popular movies
-    private void displayPopularMovies() {
+    public void displayPopularMovies() {
         fetchMovies("popular", 1);
         for (int i = 0; i < 4; i++){
             MovieResponse movie = popularMoviesResponse.getMovies().get(i);
@@ -108,13 +111,27 @@ public class IndexController implements Initializable {
             Double rating = movie.getVoteAverage();
             int id = movie.getId();
 
-            MainMovieCard popularMovieCard = new MainMovieCard(posterPath, title, rating, id);
-            this.popularContainer.getChildren().add(popularMovieCard);
+            HBox h1 = new HBox();
+            HBox.setMargin(h1, new Insets(0,0,50,0));
+            h1.setMinWidth(250.0);
+            h1.setMinHeight(120.0);
+            VBox v1 = new VBox();
+            VBox v2 = new VBox();
+            MainMovieCard popularMovieCard = new MainMovieCard(posterPath, title, rating, id, "right");
+            v1.getChildren().add(popularMovieCard.getMoviePoster());
+            Label titleLabel = new Label();
+            titleLabel.setText(popularMovieCard.getMovieTitle().getText());
+            titleLabel.setWrapText(true);
+            v2.getChildren().add(titleLabel);
+            v2.getChildren().add(popularMovieCard.getMovieRating());
+            v2.getChildren().add(popularMovieCard.getMovieDetailNavBtn());
+            h1.getChildren().add(v1);
+            h1.getChildren().add(v2);
+            popularWrapper.getChildren().add(h1);
         }
     }
 
-    // TODO: display upcoming movies
-    private void displayUpcomingMovies() {
+    public void displayUpcomingMovies() {
         fetchMovies("upcoming", 1);
         for (int i = 0; i < 4; i++){
             MovieResponse movie = upcomingMoviesResponse.getMovies().get(i);
@@ -124,8 +141,23 @@ public class IndexController implements Initializable {
             Double rating = movie.getVoteAverage();
             int id = movie.getId();
 
-            MainMovieCard upcomingMovieCard = new MainMovieCard(posterPath, title, rating, id);
-            this.upcomingContainer.getChildren().add(upcomingMovieCard);
+            HBox h1 = new HBox();
+            HBox.setMargin(h1, new Insets(0,0,50,0));
+            h1.setMinWidth(250.0);
+            h1.setMinHeight(120.0);
+            VBox v1 = new VBox();
+            VBox v2 = new VBox();
+            MainMovieCard upcomingMovieCard = new MainMovieCard(posterPath, title, rating, id, "right");
+            v1.getChildren().add(upcomingMovieCard.getMoviePoster());
+            Label titleLabel = new Label();
+            titleLabel.setText(upcomingMovieCard.getMovieTitle().getText());
+            titleLabel.setWrapText(true);
+            v2.getChildren().add(titleLabel);
+            v2.getChildren().add(upcomingMovieCard.getMovieRating());
+            v2.getChildren().add(upcomingMovieCard.getMovieDetailNavBtn());
+            h1.getChildren().add(v1);
+            h1.getChildren().add(v2);
+            upcomingWrapper.getChildren().add(h1);
         }
     }
 

@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DetailedMovieController implements Initializable {
+public class DetailedMovieController extends IndexController implements Initializable  {
     private int movieId;
     @FXML
     private Button siderHomeBtn;
@@ -35,6 +35,9 @@ public class DetailedMovieController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.movieId = 0;
         this.movie = new MovieResponse();
+        displayPopularMovies();
+        displayUpcomingMovies();
+
     }
 
     public void setMovieId(int movieId) {
@@ -45,7 +48,7 @@ public class DetailedMovieController implements Initializable {
         this.movie = movie;
     }
 
-    public void fetchMovie(int movieId) {
+    public MovieResponse fetchMovie(int movieId) {
         setMovieId(movieId);
 
         try {
@@ -61,11 +64,17 @@ public class DetailedMovieController implements Initializable {
             setMovie(MovieResponse.parse(jsonObj));
             System.out.println(this.movie);
 
+
             // TODO: please write the method for displaying the movie detail here
+
+
+            // TODO: please write the method for displaying the movie detail herer
+            return movie;
 
         } catch (UnirestException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     @FXML
