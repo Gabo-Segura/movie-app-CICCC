@@ -9,11 +9,15 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,7 +29,9 @@ public class IndexController implements Initializable {
     @FXML
     public ImageView heroPoster;
     @FXML
-    private GridPane moviesContainer;
+    private VBox mainMoviesContainer;
+    @FXML
+    private Pagination pagination;
 
     private DiscoverMoviesResponse moviesResponse;
     private DiscoverMoviesResponse popularMoviesResponse;
@@ -33,27 +39,42 @@ public class IndexController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // fetch data from api
-        fetchMovies("default");
-        // display poster on Hero section
-        setHeroBackdrop();
-        // display main movies
-        displayMovies();
+        // initialize pagination
+        this.pagination.setPageFactory(this::changePage);
 
         // TODO: display popular movies
         displayPopularMovies();
         // TODO: display upcoming movies
         displayUpcomingMovies();
+
+        // concurrency
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // wait for 3s before execute the task
+                Thread.sleep(1000);
+                // display poster on Hero section
+                setHeroBackdrop();
+
+                Thread.sleep(1000);
+                pagination.setPageCount(moviesResponse.getTotalPages());
+                return null;
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
     }
 
     // TODO: display popular movies
     private void displayPopularMovies() {
-        fetchMovies("popular");
+        fetchMovies("popular", 1);
     }
 
     // TODO: display upcoming movies
     private void displayUpcomingMovies() {
-        fetchMovies("upcoming");
+        fetchMovies("upcoming", 1);
     }
 
     private void setHeroBackdrop() {
@@ -61,26 +82,6 @@ public class IndexController implements Initializable {
         Image img = new Image(imgUrl);
 
         this.heroPoster.setImage(img);
-    }
-
-    // display the fetched movie data on screen
-    private void displayMovies() {
-        int k = 0;
-
-        for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 3; col++) {
-                MovieResponse movie = moviesResponse.getMovies().get(k);
-
-                String posterPath = movie.getPosterPath();
-                String title = movie.getTitle();
-                Double rating = movie.getVoteAverage();
-                int id = movie.getId();
-
-                MainMovieCard mainMovieCard = new MainMovieCard(posterPath, title, rating, id);
-                this.moviesContainer.add(mainMovieCard, col, row);
-                k++;
-            }
-        }
     }
 
     private void setMoviesResponse(String type, JSONObject jsonObject) {
@@ -116,14 +117,14 @@ public class IndexController implements Initializable {
 
     // https://developers.themoviedb.org/3/discover/movie-discover
     // TODO: change the query string to fetch different movies data
-    public HttpResponse<JsonNode> getJsonRes(String directive) throws UnirestException {
+    public HttpResponse<JsonNode> getJsonRes(String directive, int pageNumber) throws UnirestException {
         String language = "en-US";
         String region = "US";
         String sortBy = "popularity.desc";
         String includeAdult = "false";
         String includeVideo = "false";
         String withWatchMonetizationTypes = "flatrate";
-        String page = "1";
+        String page = String.valueOf(pageNumber);
 
         String url = Config.BASE_URL + directive;
 
@@ -144,21 +145,55 @@ public class IndexController implements Initializable {
             .asJson();
     }
 
-    public void fetchMovies(String type) {
+    public void fetchMovies(String type, int page) {
         try {
+            System.out.println(type);
             HttpResponse<JsonNode> jsonRes;
             if (type.equals("popular")) {
-                jsonRes = getJsonRes("/movie/popular");
+                jsonRes = getJsonRes("/movie/popular", page);
             } else if (type.equals("upcoming")) {
-                jsonRes = getJsonRes("/movie/upcoming");
+                jsonRes = getJsonRes("/movie/upcoming", page);
             } else {
-                jsonRes = getJsonRes("/discover/movie");
+                jsonRes = getJsonRes("/discover/movie", page);
             }
 
             JSONObject jsonObject = jsonRes.getBody().getObject();
             setMoviesResponse(type, jsonObject);
         } catch (UnirestException e) {
             e.printStackTrace();
+        }
+    }
+
+    private GridPane changePage(int index) {
+        System.out.println(index);
+        // fetch data from api
+        fetchMovies("default", (index + 1));
+
+        // initialize the movieContainer Section
+        GridPane moviesContainer = new GridPane();
+        moviesContainer.setHgap(20);
+        moviesContainer.setVgap(20);
+        moviesContainer.setAlignment(Pos.CENTER);
+        addMovieCards(moviesContainer);
+
+        return moviesContainer;
+    }
+
+    private void addMovieCards(GridPane moviesContainer) {
+        int k = 0;
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 3; col++) {
+                MovieResponse movie = this.moviesResponse.getMovies().get(k);
+
+                String posterPath = movie.getPosterPath();
+                String title = movie.getTitle();
+                Double rating = movie.getVoteAverage();
+                int id = movie.getId();
+
+                MainMovieCard mainMovieCard = new MainMovieCard(posterPath, title, rating, id);
+                moviesContainer.add(mainMovieCard, col, row);
+                k++;
+            }
         }
     }
 }
