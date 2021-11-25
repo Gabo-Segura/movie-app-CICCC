@@ -131,7 +131,7 @@
                                 <Insets bottom="30.0" />
                             </VBox.margin></Text>
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="250" pannable="true" prefHeight="0.0">
-                            <VBox fx:id="popularWrapper">
+                            <VBox fx:id="popularWrapper" alignment="CENTER">
 
                             </VBox>
                         </ScrollPane>

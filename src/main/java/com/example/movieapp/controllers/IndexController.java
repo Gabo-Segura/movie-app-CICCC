@@ -102,9 +102,9 @@ public class IndexController implements Initializable {
             int id = movie.getId();
 
             HBox h1 = new HBox();
+            HBox.setMargin(h1, new Insets(0,0,50,0));
             h1.setMinWidth(250.0);
-            h1.setMaxHeight(100.0);
-            h1.setAlignment(Pos.CENTER);
+            h1.setMinHeight(120.0);
             VBox v1 = new VBox();
             VBox v2 = new VBox();
             MainMovieCard popularMovieCard = new MainMovieCard(posterPath, title, rating, id, "right");
@@ -132,9 +132,9 @@ public class IndexController implements Initializable {
             int id = movie.getId();
 
             HBox h1 = new HBox();
+            HBox.setMargin(h1, new Insets(0,0,50,0));
             h1.setMinWidth(250.0);
-            h1.setMaxHeight(100.0);
-            h1.setAlignment(Pos.CENTER);
+            h1.setMinHeight(120.0);
             VBox v1 = new VBox();
             VBox v2 = new VBox();
             MainMovieCard upcomingMovieCard = new MainMovieCard(posterPath, title, rating, id, "right");
