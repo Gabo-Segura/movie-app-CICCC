@@ -98,12 +98,12 @@
                 <!-- Right side content -->
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="upcoming-movies">
                     <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="popularContainer" prefHeight="200.0" prefWidth="100.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies" />
                             </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
+                       <VBox fx:id="upcomingContainer" prefHeight="200.0" prefWidth="100.0">
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies" />
                             </children>
