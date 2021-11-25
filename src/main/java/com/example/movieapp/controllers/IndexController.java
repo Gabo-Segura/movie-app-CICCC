@@ -45,6 +45,9 @@ public class IndexController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (this.pagination == null) {
+            this.pagination = new Pagination();
+        }
         // initialize pagination
         this.pagination.setPageFactory(this::changePage);
 
@@ -54,19 +57,33 @@ public class IndexController implements Initializable {
         displayUpcomingMovies();
 
         // concurrency
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
-            protected Void call() throws Exception {
-                // wait for 3s before execute the task
-                Thread.sleep(1000);
-                // display poster on Hero section
-                setHeroBackdrop();
+            protected Void call() {
+                for (int iterations = 0; iterations < 5; iterations++) {
+                    if (isCancelled()) {
+                        updateMessage("Cancelled");
+                        break;
+                    }
+                    updateMessage("Iteration " + iterations);
+                    updateProgress(iterations, 1);
 
-                Thread.sleep(1000);
-                pagination.setPageCount(moviesResponse.getTotalPages());
+                    //Block the thread for a short time, but be sure
+                    //to check the InterruptedException for cancellation
+                    try {
+                        Thread.sleep(500);
+                        setHeroBackdrop();
+                    } catch (InterruptedException interrupted) {
+                        if (isCancelled()) {
+                            updateMessage("Cancelled");
+                            break;
+                        }
+                    }
+                }
                 return null;
             }
         };
+        task.setOnSucceeded(workerStateEvent -> this.pagination.setPageCount(this.moviesResponse.getTotalPages()));
 
         Thread thread = new Thread(task);
         thread.setDaemon(true);
@@ -116,7 +133,7 @@ public class IndexController implements Initializable {
         int page = jsonObject.getInt("page");
 
         JSONArray results = jsonObject.getJSONArray("results");
-        List<MovieResponse> movies = MovieResponse.parse(results);
+        List<MovieResponse> movies = MovieResponse.parseMovies(results);
 
         int totalPages = jsonObject.getInt("total_pages");
         int totalResults = jsonObject.getInt("total_results");
