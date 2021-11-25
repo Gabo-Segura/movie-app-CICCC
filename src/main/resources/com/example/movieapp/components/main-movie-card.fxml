@@ -7,11 +7,11 @@
 <?import com.example.movieapp.components.MovieRating?>
 <?import javafx.scene.control.Button?>
 
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" prefWidth="33">
-    <ImageView fx:id="moviePoster" />
-    <Text fx:id="movieTitle"/>
-    <MovieRating fx:id="movieRating" />
-    <Button fx:id="movieDetailNavBtn" />
+<fx:root stylesheets="@../styles.css" type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" prefWidth="33">
+    <ImageView styleClass="moviePosterImage" fx:id="moviePoster" />
+    <Text fill="#777777" styleClass="moviesTitle" fx:id="movieTitle"/>
+    <MovieRating styleClass="moviesRating" fx:id="movieRating" />
+    <Button styleClass="detailMovieButton" fx:id="movieDetailNavBtn" />
 </fx:root>
 
 

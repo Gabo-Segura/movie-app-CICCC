@@ -32,6 +32,7 @@ public class IndexController implements Initializable {
     private VBox mainMoviesContainer;
     @FXML
     private Pagination pagination;
+    @FXML
     private GridPane moviesContainer;
     @FXML
     private VBox popularContainer;

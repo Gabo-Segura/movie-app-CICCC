@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.IndexController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.IndexController">
     <children>
         <HBox prefHeight="800.0" prefWidth="1400.0">
             <children>
+                <!-- Left side content -->
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="left-sider">
                     <children>
                         <VBox>
@@ -45,7 +46,7 @@
                         <VBox>
                             <children>
                                 <Button mnemonicParsing="false" styleClass="home" text="Home" />
-                                <Button mnemonicParsing="false" styleClass="favorites" text="Your Favourites" />
+                                <Button mnemonicParsing="false" styleClass="favorites" text="Your Favorites" />
                                 <Button mnemonicParsing="false" text="Title" />
                                 <Button mnemonicParsing="false" text="Genres" />
                                 <Button mnemonicParsing="false" text="Date" />
@@ -66,6 +67,23 @@
                 <!-- Main content -->
                 <VBox styleClass="main-content">
                     <children>
+
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                                    <!-- TODO: add button to navigate that movie -->
+                                    <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                                                <viewport>
+                                                    <Rectangle2D />
+                                                </viewport>
+                                      </ImageView>
+                                    <Button styleClass="detailMovieButton" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     </StackPane>
+
                       <StackPane prefHeight="150.0" prefWidth="200.0">
                          <children>
                             <AnchorPane prefHeight="200.0" prefWidth="200.0">
@@ -76,15 +94,28 @@
                                                 <Rectangle2D />
                                             </viewport>
                                   </ImageView>
-                                  <Button layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
+                                  <Button styleClass="detailMovieButton" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
                                </children>
                             </AnchorPane>
                          </children>
                       </StackPane>
 
+
                         <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="480.0" minViewportWidth="460.0" pannable="true" prefHeight="400.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
                             <VBox fx:id="mainMoviesContainer" alignment="CENTER">
                                 <Pagination fx:id="pagination" pageCount="10" prefHeight="56.0" prefWidth="464.0" styleClass="menuPages" />
+
+                                <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="500.0" minViewportWidth="460.0" pannable="true" prefHeight="0.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
+                                    <VBox alignment="CENTER">
+                                        <GridPane fx:id="moviesContainer" alignment="CENTER" hgap="20" vgap="20">
+                                        </GridPane>
+                                        <Pagination pageCount="10" prefHeight="56.0" prefWidth="464.0" styleClass="menuPages" />
+                                        <opaqueInsets>
+                                           <Insets top="30.0" />
+                                        </opaqueInsets>
+                                    </VBox>
+                                </ScrollPane>
+
                             </VBox>
                         </ScrollPane>
                     </children>
@@ -95,7 +126,7 @@
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
                             <VBox fx:id="popularContainer">
                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
+                                    <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font>
@@ -113,7 +144,7 @@
                         <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
                            <VBox fx:id="upcomingContainer">
                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
+                                    <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
                               <font>
                                  <Font name="System Bold" size="18.0" />
                               </font>
