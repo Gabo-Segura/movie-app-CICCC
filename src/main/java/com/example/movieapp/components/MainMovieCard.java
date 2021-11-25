@@ -36,7 +36,7 @@ public class MainMovieCard extends VBox {
         try {
             fxmlLoader.load();
             this.movieDetailNavBtn.setText("See Details");
-            this.movieDetailNavBtn.setOnAction(this::navigateMovieDetails);
+            this.movieDetailNavBtn.setOnAction(MainMovieCard::navigateMovieDetails);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -70,10 +70,10 @@ public class MainMovieCard extends VBox {
         this.movieDetailNavBtn.setId(String.valueOf(id));
     }
 
+    @FXML
     // change scene to navigate the details of a movie
-    private void navigateMovieDetails(ActionEvent event) {
+    public static void navigateMovieDetails(ActionEvent event) {
         try {
-            System.out.println("Btn clicked.");
             Button btnClicked = (Button) event.getSource();
 
             FXMLLoader fxmlLoader = new FXMLLoader();

@@ -14,7 +14,7 @@ public class MovieResponse {
     private String posterPath;
     private boolean isAdult;
     private String overview;
-    private LocalDate releaseDate;
+    private String releaseDate;
     private List<Integer> genreIds;
     private String title;
     private String backdropPath;
@@ -22,7 +22,7 @@ public class MovieResponse {
 
     public MovieResponse(){}
 
-    public MovieResponse(int id, String posterPath, boolean isAdult, String overview, LocalDate releaseDate, List<Integer> genreIds, String title, String backdropPath, double voteAverage) {
+    public MovieResponse(int id, String posterPath, boolean isAdult, String overview, String releaseDate, List<Integer> genreIds, String title, String backdropPath, double voteAverage) {
         this.id = id;
         this.posterPath = posterPath;
         this.isAdult = isAdult;
@@ -46,7 +46,7 @@ public class MovieResponse {
         return overview;
     }
 
-    public LocalDate getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
@@ -94,10 +94,9 @@ public class MovieResponse {
             System.out.println("missing overview");
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate releaseDate = null;
+        String releaseDate = "";
         try {
-            releaseDate = LocalDate.parse(json.getString("release_date"), formatter);
+            releaseDate = json.getString("release_date");
         } catch (JSONException e) {
             System.out.println("missing release date");
         }
