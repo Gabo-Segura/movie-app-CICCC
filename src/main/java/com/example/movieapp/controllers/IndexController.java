@@ -56,19 +56,33 @@ public class IndexController implements Initializable {
         displayUpcomingMovies();
 
         // concurrency
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
-            protected Void call() throws Exception {
-                // wait for 3s before execute the task
-                Thread.sleep(1000);
-                // display poster on Hero section
-                setHeroBackdrop();
+            protected Void call() {
+                for (int iterations = 0; iterations < 1000; iterations++) {
+                    if (isCancelled()) {
+                        updateMessage("Cancelled");
+                        break;
+                    }
+                    updateMessage("Iteration " + iterations);
+                    updateProgress(iterations, 1000);
 
-                Thread.sleep(1000);
-                pagination.setPageCount(moviesResponse.getTotalPages());
+                    //Block the thread for a short time, but be sure
+                    //to check the InterruptedException for cancellation
+                    try {
+                        Thread.sleep(1000);
+                        setHeroBackdrop();
+                    } catch (InterruptedException interrupted) {
+                        if (isCancelled()) {
+                            updateMessage("Cancelled");
+                            break;
+                        }
+                    }
+                }
                 return null;
             }
         };
+        task.setOnSucceeded(workerStateEvent -> this.pagination.setPageCount(this.moviesResponse.getTotalPages()));
 
         Thread thread = new Thread(task);
         thread.setDaemon(true);
