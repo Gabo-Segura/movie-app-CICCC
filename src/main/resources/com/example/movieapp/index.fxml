@@ -66,35 +66,25 @@
                 <!-- Main content -->
                 <VBox styleClass="main-content">
                     <children>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                                    <!-- TODO: add button to navigate that movie -->
-                                    <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-                                        <viewport>
-                                            <Rectangle2D />
-                                        </viewport>
-                              </ImageView>
-                              <Button layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </StackPane>
+                      <StackPane prefHeight="150.0" prefWidth="200.0">
+                         <children>
+                            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                               <children>
+                                        <!-- TODO: add button to navigate that movie -->
+                                        <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                                            <viewport>
+                                                <Rectangle2D />
+                                            </viewport>
+                                  </ImageView>
+                                  <Button layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
+                               </children>
+                            </AnchorPane>
+                         </children>
+                      </StackPane>
 
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="480.0" minViewportWidth="460.0" pannable="false" prefHeight="400.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="480.0" minViewportWidth="460.0" pannable="true" prefHeight="400.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
                             <VBox fx:id="mainMoviesContainer" alignment="CENTER">
                                 <Pagination fx:id="pagination" pageCount="10" prefHeight="56.0" prefWidth="464.0" styleClass="menuPages" />
-
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="500.0" minViewportWidth="460.0" pannable="true" prefHeight="0.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
-                            <VBox alignment="CENTER">
-                                <GridPane fx:id="moviesContainer" alignment="CENTER" hgap="20" vgap="20">
-                                </GridPane>
-                                <Pagination pageCount="10" prefHeight="56.0" prefWidth="464.0" styleClass="menuPages" />
-                        <opaqueInsets>
-                           <Insets top="30.0" />
-                        </opaqueInsets>
-
                             </VBox>
                         </ScrollPane>
                     </children>
