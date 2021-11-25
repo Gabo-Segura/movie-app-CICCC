@@ -14,7 +14,7 @@
     -fx-background-insets: 5px;
     -fx-text-fill: #FFF990;
     -fx-pref-width: 200px;
-    -fx-pref-height: 130px;
+    -fx-pref-height: 150px;
     -fx-text-alignment: center;
 }
 
@@ -24,14 +24,13 @@
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
     -fx-pref-width: 200px;
-    -fx-pref-height: 100px;
+    -fx-pref-height: 130px;
 }
 
 .left-sider Button{
     -fx-color: #0052D8;
     -fx-border-color: #FFF990 ;
-    -fx-border-width: 2 ;
-    -fx-border-style: none none solid none;
+    -fx-border-width: 0 0 2 0 ;
     -fx-margin: 10 0 0 10;
     -fx-font: 16px "Sans-Serif";
     -fx-pref-width: 200px;
@@ -47,16 +46,14 @@
     -fx-background-color: #FFF990;
     -fx-text-fill: #0052D8;
     -fx-border-color: #FF4934 ;
-    -fx-border-width: 2 ;
-    -fx-border-style: none none solid none;
+    -fx-border-width: 0 0 2 0;
 }
 
 .left-sider .home{
     -fx-background-color: #FFF990;
     -fx-text-fill: #0052D8;
     -fx-border-color: #FF4934 ;
-    -fx-border-width: 2 ;
-    -fx-border-style: none none solid none;
+    -fx-border-width: 0 0 2 0;
 }
 
 .left-sider .favorites{
@@ -140,6 +137,16 @@
     -fx-pref-width: 250px;
     -fx-padding: 30;
     -fx-border-color: #707070 ;
-    -fx-border-width: 2 ;
-    -fx-border-style: none none none solid;
+    -fx-border-width: 0 0 0 2 ;
+}
+
+/**/
+#movieDetailNavBtn{
+    -fx-background-color: #FFF990;
+    -fx-text-fill: #000000;
+}
+
+#moviePoster{
+    -fx-pref-width: 800px;
+    -fx-pref-height: 400px;
 }
