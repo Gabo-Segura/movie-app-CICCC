@@ -49,7 +49,7 @@
                         </VBox>
                         <VBox>
                             <children>
-                                <Button mnemonicParsing="false" styleClass="home" text="Home" />
+                                <Button mnemonicParsing="false" styleClass="home" text="Home" fx:id="homeBtn" onAction="#backToHomeScene" />
                                 <Button mnemonicParsing="false" styleClass="favorites" text="Your Favorites" />
                                 <Button mnemonicParsing="false" text="Title" />
                                 <Button mnemonicParsing="false" text="Genres" />
@@ -71,13 +71,12 @@
                          <children>
                             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                <children>
-                                        <!-- TODO: add button to navigate that movie -->
                                         <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
                                             <viewport>
                                                 <Rectangle2D />
                                             </viewport>
                                   </ImageView>
-                                  <Button layoutX="35.0" layoutY="241.0" mnemonicParsing="false" styleClass="detailMovieButton" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
+                                  <Button fx:id="navBtn" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" onAction="#navigateMovieDetails" styleClass="detailMovieButton" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
                                </children>
                             </AnchorPane>
                          </children>

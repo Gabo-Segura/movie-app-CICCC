@@ -3,6 +3,7 @@ package com.example.movieapp.components;
 import com.example.movieapp.Config;
 import com.example.movieapp.MovieApplication;
 import com.example.movieapp.controllers.DetailedMovieController;
+import com.example.movieapp.controllers.IndexController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,7 @@ public class MainMovieCard extends VBox {
         try {
             fxmlLoader.load();
             this.movieDetailNavBtn.setText("See Details");
-            this.movieDetailNavBtn.setOnAction(MainMovieCard::navigateMovieDetails);
+            this.movieDetailNavBtn.setOnAction(this::navigateMovieDetails);
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
@@ -72,18 +73,16 @@ public class MainMovieCard extends VBox {
 
     @FXML
     // change scene to navigate the details of a movie
-    public static void navigateMovieDetails(ActionEvent event) {
+    public void navigateMovieDetails(ActionEvent event) {
         try {
             Button btnClicked = (Button) event.getSource();
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(MovieApplication.class.getResource("detailed-movie.fxml"));
-
-            DetailedMovieController controller = new DetailedMovieController();
-            controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
-            fxmlLoader.setController(controller);
-
+            FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("detailed-movie.fxml"));
             Parent root = fxmlLoader.load();
+
+            DetailedMovieController controller = fxmlLoader.getController();
+            controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

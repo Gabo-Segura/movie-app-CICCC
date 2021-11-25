@@ -1,6 +1,7 @@
 package com.example.movieapp.controllers;
 
 import com.example.movieapp.Config;
+import com.example.movieapp.MovieApplication;
 import com.example.movieapp.components.MainMovieCard;
 import com.example.movieapp.models.movies.DiscoverMoviesResponse;
 import com.example.movieapp.models.movies.MovieResponse;
@@ -10,24 +11,36 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class IndexController implements Initializable {
     @FXML
-    public ImageView heroPoster;
+    public Button homeBtn;
+    @FXML
+    private ImageView heroPoster;
+    @FXML
+    private Button navBtn;
     @FXML
     private VBox mainMoviesContainer;
     @FXML
@@ -60,24 +73,18 @@ public class IndexController implements Initializable {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() {
-                for (int iterations = 0; iterations < 5; iterations++) {
+                if (isCancelled()) {
+                    updateMessage("Cancelled");
+                }
+
+                //Block the thread for a short time, but be sure
+                //to check the InterruptedException for cancellation
+                try {
+                    Thread.sleep(500);
+                    setHeroBackdrop();
+                } catch (InterruptedException interrupted) {
                     if (isCancelled()) {
                         updateMessage("Cancelled");
-                        break;
-                    }
-                    updateMessage("Iteration " + iterations);
-                    updateProgress(iterations, 1);
-
-                    //Block the thread for a short time, but be sure
-                    //to check the InterruptedException for cancellation
-                    try {
-                        Thread.sleep(500);
-                        setHeroBackdrop();
-                    } catch (InterruptedException interrupted) {
-                        if (isCancelled()) {
-                            updateMessage("Cancelled");
-                            break;
-                        }
                     }
                 }
                 return null;
@@ -239,6 +246,41 @@ public class IndexController implements Initializable {
                 moviesContainer.add(mainMovieCard, col, row);
                 k++;
             }
+        }
+    }
+
+    @FXML
+    public void navigateMovieDetails(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("detailed-movie.fxml"));
+            Parent root = fxmlLoader.load();
+
+            DetailedMovieController controller = fxmlLoader.getController();
+            controller.fetchMovie(this.moviesResponse.getMovies().get(1).getId());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void backToHomeScene(ActionEvent event) {
+        try {
+            System.out.println("back to home page");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("index.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
