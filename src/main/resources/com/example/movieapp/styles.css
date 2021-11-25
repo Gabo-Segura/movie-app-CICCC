@@ -1,3 +1,7 @@
+AnchorPane{
+    -fx-background-color: #ffffff;
+}
+
 /* Left side bar */
 .left-sider {
     -fx-background-color: #0052D8;
@@ -101,6 +105,14 @@
 }
 
 /* Middle section */
+ScrollPane{
+    -fx-background-color: #ffffff;
+}
+
+ScrollPane VBox{
+    -fx-background-color: #ffffff;
+}
+
 .main-content{
     -fx-pref-width: 800px;
     -fx-padding: 30;
@@ -115,7 +127,7 @@
 }
 
 .main-content .menuPages{
-    -fx-padding: 5px;
+    -fx-padding: 5;
     -fx-border-insets: 5px;
     -fx-background-insets: 5px;
 }
@@ -136,17 +148,87 @@
 .upcoming-movies{
     -fx-pref-width: 250px;
     -fx-padding: 30;
-    -fx-border-color: #707070 ;
+    -fx-border-color: #E0E0E0 ;
     -fx-border-width: 0 0 0 2 ;
 }
 
-/**/
-#movieDetailNavBtn{
+/*movie details*/
+.detailMovieButton{
     -fx-background-color: #FFF990;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #777777;
+    -fx-padding: 10;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.detailMovieButton:hover{
+    -fx-background-color: #F7EEDD;
+    -fx-text-fill: #777777;
+}
+
+.moviePosterImage{
+    -fx-padding: 5;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.moviesTitle{
+    -fx-text-fill: #777777;
+    -fx-padding: 5;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.moviesRating{
+    -fx-text-fill: #777777;
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
 }
 
 #moviePoster{
     -fx-pref-width: 800px;
     -fx-pref-height: 400px;
+}
+
+/*movie details*/
+.main-content-details{
+    -fx-background-color: #ffffff;
+    -fx-pref-width: 800px;
+    -fx-padding: 30;
+    -fx-text-fill: #777777;
+}
+
+.main-content-details .buttonBack{
+    -fx-background-color: #0052D8;
+    -fx-text-fill: #ffffff;
+}
+
+.main-content-details .buttonBack:hover{
+    -fx-background-color: #FFF990;
+    -fx-text-fill: #0052D8;
+}
+
+.heartButton{
+    -fx-padding: 5;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-image: url('images/heart-like.png');
+    -fx-background-size: 60px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50%;
+}
+
+.heartButton:hover{
+    -fx-padding: 5;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-background-image: url('images/heart-like-hover.png');
+    -fx-background-size: 60px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50%;
 }
