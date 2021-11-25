@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.IndexController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.IndexController">
     <children>
-        <HBox prefHeight="800.0" prefWidth="1200.0">
+        <HBox prefHeight="800.0" prefWidth="1400.0">
             <children>
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="left-sider">
                     <children>
@@ -36,6 +36,11 @@
                               </font></Text>
                                 </children>
                             </HBox>
+                        </VBox>
+                        <VBox>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin>
                         </VBox>
                         <VBox>
                             <children>
@@ -76,7 +81,7 @@
                         </AnchorPane>
                      </children>
                   </StackPane>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="500.0" minViewportWidth="460.0" pannable="false" prefHeight="0.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" minViewportHeight="500.0" minViewportWidth="460.0" pannable="true" prefHeight="0.0" prefViewportHeight="2000.0" prefWidth="460.0" styleClass="scrollMovies" vbarPolicy="ALWAYS">
                             <VBox alignment="CENTER">
                                 <GridPane fx:id="moviesContainer" alignment="CENTER" hgap="20" vgap="20">
                                 </GridPane>
@@ -91,16 +96,37 @@
                 <!-- Right side content -->
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="upcoming-movies">
                     <children>
-                        <VBox fx:id="popularContainer" prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies" />
-                            </children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
+                            <VBox fx:id="popularContainer">
+                                <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets bottom="30.0" />
+                              </VBox.margin></Text>
+                                </children>
+                            </VBox>
+                        </ScrollPane>
+                        <VBox>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin>
                         </VBox>
-                       <VBox fx:id="upcomingContainer" prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies" />
-                            </children>
-                        </VBox>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
+                           <VBox fx:id="upcomingContainer">
+                                <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font>
+                              <VBox.margin>
+                                 <Insets bottom="30.0" />
+                              </VBox.margin></Text>
+                                </children>
+                            </VBox>
+                        </ScrollPane>
                     </children>
                 </VBox>
             </children>

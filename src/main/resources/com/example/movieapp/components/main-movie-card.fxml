@@ -6,9 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import com.example.movieapp.components.MovieRating?>
 <?import javafx.scene.control.Button?>
-<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
+
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" prefWidth="33">
     <ImageView fx:id="moviePoster" />
     <Text fx:id="movieTitle"/>
     <MovieRating fx:id="movieRating" />
     <Button fx:id="movieDetailNavBtn" />
 </fx:root>
+
+
