@@ -3,7 +3,11 @@ package com.example.movieapp.components;
 import com.example.movieapp.Config;
 import com.example.movieapp.MovieApplication;
 import com.example.movieapp.controllers.DetailedMovieController;
+
+import com.example.movieapp.controllers.IndexController;
+
 import com.example.movieapp.models.movies.MovieResponse;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,22 +108,26 @@ public class MainMovieCard extends VBox {
         this.movieDetailNavBtn.setId(String.valueOf(id));
     }
 
+
+    @FXML
+
     public Button getMovieDetailNavBtn() {
         return movieDetailNavBtn;
     }
 
+
     // change scene to navigate the details of a movie
-    private void navigateMovieDetails(ActionEvent event) {
+    public void navigateMovieDetails(ActionEvent event) {
         try {
-            System.out.println("Btn clicked.");
             Button btnClicked = (Button) event.getSource();
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(MovieApplication.class.getResource("detailed-movie.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("detailed-movie.fxml"));
+            Parent root = fxmlLoader.load();
 
-            DetailedMovieController controller = new DetailedMovieController();
+            DetailedMovieController controller = fxmlLoader.getController();
             controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
-            fxmlLoader.setController(controller);
+
+
 
             Parent root = fxmlLoader.load();
             MovieResponse clickedMovie = controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
@@ -144,6 +152,7 @@ public class MainMovieCard extends VBox {
             Label displayOverview = (Label) fxmlLoader.getNamespace().get("movOverview");
             displayOverview.setText(clickedMovie.getOverview());
             displayOverview.setWrapText(true);
+
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
