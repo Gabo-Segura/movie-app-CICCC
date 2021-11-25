@@ -68,21 +68,21 @@
                 <VBox styleClass="main-content">
                     <children>
 
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                                    <!-- TODO: add button to navigate that movie -->
-                                    <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-                                                <viewport>
-                                                    <Rectangle2D />
-                                                </viewport>
-                                      </ImageView>
-                                    <Button styleClass="detailMovieButton" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                     </StackPane>
+<!--                  <StackPane prefHeight="150.0" prefWidth="200.0">-->
+<!--                     <children>-->
+<!--                        <AnchorPane prefHeight="200.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                                    &lt;!&ndash; TODO: add button to navigate that movie &ndash;&gt;-->
+<!--                                    <ImageView fx:id="heroPoster" fitHeight="300.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">-->
+<!--                                                <viewport>-->
+<!--                                                    <Rectangle2D />-->
+<!--                                                </viewport>-->
+<!--                                      </ImageView>-->
+<!--                                    <Button styleClass="detailMovieButton" layoutX="35.0" layoutY="241.0" mnemonicParsing="false" text="See Details" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="35.0" />-->
+<!--                           </children>-->
+<!--                        </AnchorPane>-->
+<!--                     </children>-->
+<!--                     </StackPane>-->
 
                       <StackPane prefHeight="150.0" prefWidth="200.0">
                          <children>
@@ -123,17 +123,16 @@
                 <!-- Right side content -->
                 <VBox prefHeight="800.0" prefWidth="300.0" styleClass="upcoming-movies">
                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
-                            <VBox fx:id="popularContainer">
-                                <children>
-                                    <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets bottom="30.0" />
-                              </VBox.margin></Text>
-                                </children>
+                        <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Movies">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin></Text>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="250" pannable="true" prefHeight="0.0">
+                            <VBox fx:id="popularWrapper" alignment="CENTER">
+
                             </VBox>
                         </ScrollPane>
                         <VBox>
@@ -141,16 +140,16 @@
                                 <Insets bottom="30.0" />
                             </VBox.margin>
                         </VBox>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="300" pannable="true" prefHeight="0.0">
-                           <VBox fx:id="upcomingContainer">
+                        <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="30.0" />
+                            </VBox.margin></Text>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300" minViewportHeight="360.0" minViewportWidth="250" pannable="true" prefHeight="0.0">
+                           <VBox fx:id="upcomingWrapper">
                                 <children>
-                                    <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Movies">
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                              <VBox.margin>
-                                 <Insets bottom="30.0" />
-                              </VBox.margin></Text>
                                 </children>
                             </VBox>
                         </ScrollPane>
