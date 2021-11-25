@@ -39,6 +39,9 @@ public class IndexController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (this.pagination == null) {
+            this.pagination = new Pagination();
+        }
         // initialize pagination
         this.pagination.setPageFactory(this::changePage);
 
@@ -88,7 +91,7 @@ public class IndexController implements Initializable {
         int page = jsonObject.getInt("page");
 
         JSONArray results = jsonObject.getJSONArray("results");
-        List<MovieResponse> movies = MovieResponse.parse(results);
+        List<MovieResponse> movies = MovieResponse.parseMovies(results);
 
         int totalPages = jsonObject.getInt("total_pages");
         int totalResults = jsonObject.getInt("total_results");

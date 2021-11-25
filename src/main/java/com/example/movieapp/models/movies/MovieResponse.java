@@ -98,71 +98,75 @@ public class MovieResponse {
         return originalLanguage;
     }
 
-    public static List<MovieResponse> parse(JSONArray results) {
-        List<MovieResponse> movies = new ArrayList<>();
-        for (Object result : results) {
-            JSONObject json = (JSONObject) result;
+    public static MovieResponse parse(JSONObject json) {
+        int id = json.getInt("id");
+        String posterPath = "";
+        boolean isAdult = false;
+        String overview = "";
 
-            int id = json.getInt("id");
-            String posterPath = "";
-            boolean isAdult = false;
-            String overview = "";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate releaseDate = null;
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate releaseDate = null;
+        List<Integer> genreIds = new ArrayList<>();
+        String originalTitle = "";
+        String originalLanguage = "";
+        String title = "";
+        String backdropPath = "";
+        double popularity = 0.0;
+        int voteCount = 0;
+        boolean hasVideo = false;
+        double voteAverage = 0.0;
 
+        try {
+            posterPath = json.getString("poster_path");
+            overview = json.getString("overview");
+            isAdult = json.getBoolean("adult");
+            releaseDate = LocalDate.parse(json.getString("release_date"), formatter);
+
+            // for genres
             JSONArray array = json.getJSONArray("genre_ids");
-            List<Integer> genreIds = new ArrayList<>();
             for (Object o : array) {
                 genreIds.add((Integer) o);
             }
 
-            String originalTitle = "";
-            String originalLanguage = "";
-            String title = "";
-            String backdropPath = "";
-            double popularity = 0.0;
-            int voteCount = 0;
-            boolean hasVideo = false;
-            double voteAverage = 0.0;
-
-            try {
-                posterPath = json.getString("poster_path");
-                overview = json.getString("overview");
-                isAdult = json.getBoolean("adult");
-                releaseDate = LocalDate.parse(json.getString("release_date"), formatter);
-                originalTitle = json.getString("original_title");
-                originalLanguage = json.getString("original_language");
-                title = json.getString("title");
-                backdropPath = json.getString("backdrop_path");
-                popularity = json.getDouble("popularity");
-                voteCount = json.getInt("vote_count");
-                hasVideo = json.getBoolean("video");
-                voteAverage = json.getDouble("vote_average");
-            } catch (JSONException e) {
-                System.out.println("missing field...");
-            }
-
-            MovieResponse newMovie = new MovieResponse(
-                id,
-                posterPath,
-                isAdult,
-                overview,
-                releaseDate,
-                genreIds,
-                originalTitle,
-                originalLanguage,
-                title,
-                backdropPath,
-                popularity,
-                voteCount,
-                hasVideo,
-                voteAverage
-            );
-//            System.out.println(newMovie);
-            movies.add(newMovie);
+            originalTitle = json.getString("original_title");
+            originalLanguage = json.getString("original_language");
+            title = json.getString("title");
+            backdropPath = json.getString("backdrop_path");
+            popularity = json.getDouble("popularity");
+            voteCount = json.getInt("vote_count");
+            hasVideo = json.getBoolean("video");
+            voteAverage = json.getDouble("vote_average");
+        } catch (JSONException e) {
+            System.out.println("missing field...");
         }
 
+        return new MovieResponse(
+            id,
+            posterPath,
+            isAdult,
+            overview,
+            releaseDate,
+            genreIds,
+            originalTitle,
+            originalLanguage,
+            title,
+            backdropPath,
+            popularity,
+            voteCount,
+            hasVideo,
+            voteAverage
+        );
+    }
+
+    public static List<MovieResponse> parseMovies(JSONArray results) {
+        List<MovieResponse> movies = new ArrayList<>();
+        for (Object result : results) {
+            JSONObject json = (JSONObject) result;
+
+            MovieResponse newMovie = MovieResponse.parse(json);
+            movies.add(newMovie);
+        }
         return movies;
     }
 
