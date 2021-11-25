@@ -32,6 +32,11 @@ public class IndexController implements Initializable {
     private VBox mainMoviesContainer;
     @FXML
     private Pagination pagination;
+    private GridPane moviesContainer;
+    @FXML
+    private VBox popularContainer;
+    @FXML
+    private VBox upcomingContainer;
 
     private DiscoverMoviesResponse moviesResponse;
     private DiscoverMoviesResponse popularMoviesResponse;
@@ -73,11 +78,35 @@ public class IndexController implements Initializable {
     // TODO: display popular movies
     private void displayPopularMovies() {
         fetchMovies("popular", 1);
+        fetchMovies("popular");
+        for (int i = 0; i < 4; i++){
+            MovieResponse movie = popularMoviesResponse.getMovies().get(i);
+
+            String posterPath = movie.getPosterPath();
+            String title = movie.getTitle();
+            Double rating = movie.getVoteAverage();
+            int id = movie.getId();
+
+            MainMovieCard popularMovieCard = new MainMovieCard(posterPath, title, rating, id);
+            this.popularContainer.getChildren().add(popularMovieCard);
+        }
     }
 
     // TODO: display upcoming movies
     private void displayUpcomingMovies() {
         fetchMovies("upcoming", 1);
+        fetchMovies("upcoming");
+        for (int i = 0; i < 4; i++){
+            MovieResponse movie = upcomingMoviesResponse.getMovies().get(i);
+            System.out.println();
+            String posterPath = movie.getPosterPath();
+            String title = movie.getTitle();
+            Double rating = movie.getVoteAverage();
+            int id = movie.getId();
+
+            MainMovieCard upcomingMovieCard = new MainMovieCard(posterPath, title, rating, id);
+            this.upcomingContainer.getChildren().add(upcomingMovieCard);
+        }
     }
 
     private void setHeroBackdrop() {
