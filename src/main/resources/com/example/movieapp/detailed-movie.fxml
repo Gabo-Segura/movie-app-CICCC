@@ -16,6 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Label?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="1400.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movieapp.controllers.DetailedMovieController">
     <children>
         <HBox prefHeight="800.0" prefWidth="1400.0">
@@ -92,7 +93,6 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font></Text>
-                              <Text fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
                               <Line startX="-100.0" stroke="#777777" strokeWidth="4.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" top="20.0" />
@@ -117,10 +117,7 @@
 <!--                                   <VBox.margin>-->
 <!--                                       <Insets bottom="5.0" />-->
 <!--                                   </VBox.margin></Text>-->
-                              <Label fx:id="movOverview" text="Overview...........................">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin></Label>
+                              <Label fx:id="movOverview" text="Overview..........................."></Label>
                            </children>
                            <opaqueInsets>
                               <Insets top="20.0" />

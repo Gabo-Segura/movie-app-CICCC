@@ -31,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -288,7 +289,31 @@ public class IndexController implements Initializable {
             Parent root = fxmlLoader.load();
 
             DetailedMovieController controller = fxmlLoader.getController();
-            controller.fetchMovie(this.moviesResponse.getMovies().get(1).getId());
+            fxmlLoader.setController(controller);
+
+            MovieResponse clickedMovie = controller.fetchMovie(this.moviesResponse.getMovies().get(0).getId());
+            ImageView displayImage = (ImageView)fxmlLoader.getNamespace().get("movImage");
+            displayImage.setImage(new Image(Config.IMG_BASE_URL + "/w500" + clickedMovie.getPosterPath()));
+
+            Text displayTitle = (Text) fxmlLoader.getNamespace().get("movTitle");
+            displayTitle.setText(clickedMovie.getTitle());
+
+            Text displayPopularity = (Text)fxmlLoader.getNamespace().get("movPopularity");
+            displayPopularity.setText("Popularity: " + clickedMovie.getVoteAverage());
+
+            Text displayRelease = (Text)fxmlLoader.getNamespace().get("movRelease");
+            displayRelease.setText("Release Date: " + clickedMovie.getReleaseDate());
+
+            Text displayCountry = (Text)fxmlLoader.getNamespace().get("movCountry");
+            displayCountry.setText("Country: ...");
+
+            Text displayLanguage = (Text)fxmlLoader.getNamespace().get("movLanguage");
+            displayLanguage.setText("Language: ...");
+
+            Label displayOverview = (Label) fxmlLoader.getNamespace().get("movOverview");
+            displayOverview.setText("Overview: \n" + clickedMovie.getOverview());
+            displayOverview.setWrapText(true);
+
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

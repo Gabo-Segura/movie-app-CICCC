@@ -3,11 +3,7 @@ package com.example.movieapp.components;
 import com.example.movieapp.Config;
 import com.example.movieapp.MovieApplication;
 import com.example.movieapp.controllers.DetailedMovieController;
-
-import com.example.movieapp.controllers.IndexController;
-
 import com.example.movieapp.models.movies.MovieResponse;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -125,32 +121,29 @@ public class MainMovieCard extends VBox {
             Parent root = fxmlLoader.load();
 
             DetailedMovieController controller = fxmlLoader.getController();
-            controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
+            fxmlLoader.setController(controller);
 
-
-
-            Parent root = fxmlLoader.load();
             MovieResponse clickedMovie = controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
             ImageView displayImage = (ImageView)fxmlLoader.getNamespace().get("movImage");
             displayImage.setImage(new Image(Config.IMG_BASE_URL + "/w500" + clickedMovie.getPosterPath()));
 
-            Text displayTitle = (Text)fxmlLoader.getNamespace().get("movTitle");
+            Text displayTitle = (Text) fxmlLoader.getNamespace().get("movTitle");
             displayTitle.setText(clickedMovie.getTitle());
 
             Text displayPopularity = (Text)fxmlLoader.getNamespace().get("movPopularity");
-            displayPopularity.setText(Double.toString(clickedMovie.getVoteAverage()));
+            displayPopularity.setText("Popularity: " + clickedMovie.getVoteAverage());
 
             Text displayRelease = (Text)fxmlLoader.getNamespace().get("movRelease");
-            displayRelease.setText(clickedMovie.getReleaseDate().toString());
+            displayRelease.setText("Release Date: " + clickedMovie.getReleaseDate());
 
             Text displayCountry = (Text)fxmlLoader.getNamespace().get("movCountry");
-            displayCountry.setText("Country");
+            displayCountry.setText("Country: ...");
 
             Text displayLanguage = (Text)fxmlLoader.getNamespace().get("movLanguage");
-            displayLanguage.setText("Language");
+            displayLanguage.setText("Language: ...");
 
             Label displayOverview = (Label) fxmlLoader.getNamespace().get("movOverview");
-            displayOverview.setText(clickedMovie.getOverview());
+            displayOverview.setText("Overview: \n" + clickedMovie.getOverview());
             displayOverview.setWrapText(true);
 
 
