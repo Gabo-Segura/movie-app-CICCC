@@ -3,11 +3,7 @@ package com.example.movieapp.components;
 import com.example.movieapp.Config;
 import com.example.movieapp.MovieApplication;
 import com.example.movieapp.controllers.DetailedMovieController;
-
-import com.example.movieapp.controllers.IndexController;
-
 import com.example.movieapp.models.movies.MovieResponse;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -122,11 +118,11 @@ public class MainMovieCard extends VBox {
             Button btnClicked = (Button) event.getSource();
 
             FXMLLoader fxmlLoader = new FXMLLoader(MovieApplication.class.getResource("detailed-movie.fxml"));
-            Parent root = fxmlLoader.load();
+            //Parent root = fxmlLoader.load();
 
             DetailedMovieController controller = fxmlLoader.getController();
             controller.fetchMovie(Integer.parseInt(btnClicked.getId()));
-
+            fxmlLoader.setController(controller);
 
 
             Parent root = fxmlLoader.load();
