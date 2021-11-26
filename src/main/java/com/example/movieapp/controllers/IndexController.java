@@ -167,6 +167,7 @@ public class IndexController implements Initializable {
         Image img = new Image(imgUrl);
 
         this.heroPoster.setImage(img);
+        
     }
 
     private void setMoviesResponse(String type, JSONObject jsonObject) {

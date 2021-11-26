@@ -102,24 +102,39 @@
                               <Text fx:id="movPopularity" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Popularity">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
-                                 </VBox.margin></Text>
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
                               <Text fx:id="movRelease" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Release Year">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
-                                 </VBox.margin></Text>
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
                               <Text fx:id="movCountry" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Country">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
-                                 </VBox.margin></Text>
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
                               <Text fx:id="movLanguage" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Language">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
-                                 </VBox.margin></Text>
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
 <!--                               <Text fx:id="movOverview" fill="#777777" strokeType="OUTSIDE" strokeWidth="0.0" text="Overview...........................">-->
 <!--                                   <VBox.margin>-->
 <!--                                       <Insets bottom="5.0" />-->
 <!--                                   </VBox.margin></Text>-->
-                              <Label fx:id="movOverview" text="Overview..........................." textFill="#777777" />
+                              <Label fx:id="movOverview" text="Overview..........................." textFill="#777777">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Label>
                            </children>
                            <opaqueInsets>
                               <Insets top="20.0" />
@@ -130,7 +145,7 @@
                         <Insets top="20.0" />
                      </opaqueInsets>
                   </HBox>
-                  <Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Similar Movies" textAlignment="CENTER" wrappingWidth="706.0">
+                  <!--<Text fill="#0052d8" strokeType="OUTSIDE" strokeWidth="0.0" text="Similar Movies" textAlignment="CENTER" wrappingWidth="706.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -150,8 +165,8 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MovieCard1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MovieCard2" GridPane.columnIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MovieCard3" GridPane.columnIndex="2" />
-                     </children>
-                  </GridPane>
+                     </children>-
+                  </GridPane>-->
                </children>
                 </VBox>
                 <!-- Right side content -->
