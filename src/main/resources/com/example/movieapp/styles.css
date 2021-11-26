@@ -154,7 +154,7 @@ ScrollPane VBox{
 
 /*movie details*/
 .detailMovieButton{
-    -fx-background-color: #FFF990;
+    -fx-background-color: #F7EEDD;
     -fx-text-fill: #777777;
     -fx-padding: 10;
     -fx-border-insets: 5px;
@@ -162,7 +162,7 @@ ScrollPane VBox{
 }
 
 .detailMovieButton:hover{
-    -fx-background-color: #F7EEDD;
+    -fx-background-color: #FFF990 ;
     -fx-text-fill: #777777;
 }
 
@@ -187,6 +187,11 @@ ScrollPane VBox{
 }
 
 #moviePoster{
+    -fx-pref-width: 800px;
+    -fx-pref-height: 400px;
+}
+
+.moviePosterImage{
     -fx-pref-width: 800px;
     -fx-pref-height: 400px;
 }
@@ -231,4 +236,84 @@ ScrollPane VBox{
     -fx-background-size: 60px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: 50%;
+}
+
+/* pagination buttons */
+/* Remove spacing */
+.pagination > .pagination-control > .control-box {
+    -fx-spacing: 0;
+    -fx-padding: 10;
+}
+
+/* You can control the actual button sizes here */
+.pagination > .pagination-control > .control-box > .number-button,
+.pagination > .pagination-control > .control-box > .bullet-button,
+.pagination > .pagination-control > .control-box > .left-arrow-button,
+.pagination > .pagination-control > .control-box > .right-arrow-button {
+    -fx-background-insets: 0, 1;
+    -fx-background-color: lightgray, #FAFAFA;
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+}
+
+/* Colors on hover */
+.pagination > .pagination-control > .control-box > .number-button:hover,
+.pagination > .pagination-control > .control-box > .bullet-button:hover,
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover,
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover {
+    -fx-background-insets: 0;
+    -fx-background-color: #F7EEDD;
+}
+
+/* Selected toggle color */
+.pagination > .pagination-control > .control-box > .number-button:selected,
+.pagination > .pagination-control > .control-box > .bullet-button:selected{
+    -fx-background-insets: 0;
+    -fx-background-color: #0052D8;
+    -fx-text-fill: white;
+}
+
+/*scrollbars*/
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color :transparent;
+    -fx-border-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-border-radius :2.0em;
+}
+
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 0.0 10.0 0.0;
+
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.0 0.15em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color :derive(black,90.0%);
+    -fx-background-insets : 2.0, 0.0, 0.0;
+    -fx-background-radius : 2.0em;
 }
